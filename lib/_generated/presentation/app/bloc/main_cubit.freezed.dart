@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$MainState {
 
- bool get isLoading; AppError get error;
+ bool get isLoading; AppError get error; AppEvent? get event;
 /// Create a copy of MainState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $MainStateCopyWith<MainState> get copyWith => _$MainStateCopyWithImpl<MainState>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MainState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.error, error) || other.error == error));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MainState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.error, error) || other.error == error)&&(identical(other.event, event) || other.event == event));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isLoading,error);
+int get hashCode => Object.hash(runtimeType,isLoading,error,event);
 
 @override
 String toString() {
-  return 'MainState(isLoading: $isLoading, error: $error)';
+  return 'MainState(isLoading: $isLoading, error: $error, event: $event)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $MainStateCopyWith<$Res>  {
   factory $MainStateCopyWith(MainState value, $Res Function(MainState) _then) = _$MainStateCopyWithImpl;
 @useResult
 $Res call({
- bool isLoading, AppError error
+ bool isLoading, AppError error, AppEvent? event
 });
 
 
@@ -62,11 +62,12 @@ class _$MainStateCopyWithImpl<$Res>
 
 /// Create a copy of MainState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? error = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? error = null,Object? event = freezed,}) {
   return _then(_self.copyWith(
 isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
-as AppError,
+as AppError,event: freezed == event ? _self.event : event // ignore: cast_nullable_to_non_nullable
+as AppEvent?,
   ));
 }
 
@@ -151,10 +152,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoading,  AppError error)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoading,  AppError error,  AppEvent? event)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _MainState() when $default != null:
-return $default(_that.isLoading,_that.error);case _:
+return $default(_that.isLoading,_that.error,_that.event);case _:
   return orElse();
 
 }
@@ -172,10 +173,10 @@ return $default(_that.isLoading,_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoading,  AppError error)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoading,  AppError error,  AppEvent? event)  $default,) {final _that = this;
 switch (_that) {
 case _MainState():
-return $default(_that.isLoading,_that.error);case _:
+return $default(_that.isLoading,_that.error,_that.event);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -192,10 +193,10 @@ return $default(_that.isLoading,_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoading,  AppError error)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoading,  AppError error,  AppEvent? event)?  $default,) {final _that = this;
 switch (_that) {
 case _MainState() when $default != null:
-return $default(_that.isLoading,_that.error);case _:
+return $default(_that.isLoading,_that.error,_that.event);case _:
   return null;
 
 }
@@ -207,11 +208,12 @@ return $default(_that.isLoading,_that.error);case _:
 
 
 class _MainState extends MainState {
-  const _MainState({this.isLoading = false, this.error = AppError.none}): super._();
+  const _MainState({this.isLoading = false, this.error = AppError.none, this.event = null}): super._();
   
 
 @override@JsonKey() final  bool isLoading;
 @override@JsonKey() final  AppError error;
+@override@JsonKey() final  AppEvent? event;
 
 /// Create a copy of MainState
 /// with the given fields replaced by the non-null parameter values.
@@ -223,16 +225,16 @@ _$MainStateCopyWith<_MainState> get copyWith => __$MainStateCopyWithImpl<_MainSt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MainState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.error, error) || other.error == error));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MainState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.error, error) || other.error == error)&&(identical(other.event, event) || other.event == event));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isLoading,error);
+int get hashCode => Object.hash(runtimeType,isLoading,error,event);
 
 @override
 String toString() {
-  return 'MainState(isLoading: $isLoading, error: $error)';
+  return 'MainState(isLoading: $isLoading, error: $error, event: $event)';
 }
 
 
@@ -243,7 +245,7 @@ abstract mixin class _$MainStateCopyWith<$Res> implements $MainStateCopyWith<$Re
   factory _$MainStateCopyWith(_MainState value, $Res Function(_MainState) _then) = __$MainStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isLoading, AppError error
+ bool isLoading, AppError error, AppEvent? event
 });
 
 
@@ -260,11 +262,12 @@ class __$MainStateCopyWithImpl<$Res>
 
 /// Create a copy of MainState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? error = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? error = null,Object? event = freezed,}) {
   return _then(_MainState(
 isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
-as AppError,
+as AppError,event: freezed == event ? _self.event : event // ignore: cast_nullable_to_non_nullable
+as AppEvent?,
   ));
 }
 

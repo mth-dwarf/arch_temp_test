@@ -12,10 +12,20 @@ RouteBase get $splashRoute =>
     GoRouteData.$route(path: '/', factory: $SplashRoute._fromState);
 
 mixin $SplashRoute on GoRouteData {
-  static SplashRoute _fromState(GoRouterState state) => SplashRoute();
+  static SplashRoute _fromState(GoRouterState state) => SplashRoute(
+    redirectAfterInit: state.uri.queryParameters['redirect-after-init'] ?? "",
+  );
+
+  SplashRoute get _self => this as SplashRoute;
 
   @override
-  String get location => GoRouteData.$location('/');
+  String get location => GoRouteData.$location(
+    '/',
+    queryParams: {
+      if (_self.redirectAfterInit != "")
+        'redirect-after-init': _self.redirectAfterInit,
+    },
+  );
 
   @override
   void go(BuildContext context) => context.go(location);

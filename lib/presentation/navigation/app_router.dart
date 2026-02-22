@@ -14,12 +14,21 @@ const _authNotRequiredRoutes = [AppRoutes.splash];
 final appRouter = GoRouter(
   initialLocation: AppRoutes.splash,
   redirect: (context, state) {
-    if (_authNotRequiredRoutes.contains(state.matchedLocation)) {
+    final isLoggedIn = context.prefs.isLoggedIn;
+    final isException = _authNotRequiredRoutes.contains(state.matchedLocation);
+
+    if (isException) {
       return null;
     }
-    if (!context.prefs.isLoggedIn) {
-      return LoginRoute().location;
+
+    if (!isLoggedIn) {
+      if (state.matchedLocation == AppRoutes.login) {
+        return null;
+      } else {
+        return LoginRoute(redirectAfterLogin: state.uri.toString()).location;
+      }
     }
+
     if (!context.prefs.onboardingHasSeenNotificationsRationale) {
       return OnboardingNotificationsRoute().location;
     }

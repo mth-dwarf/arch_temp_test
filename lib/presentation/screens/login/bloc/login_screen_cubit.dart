@@ -5,9 +5,13 @@ import 'package:mt_template/presentation/screens/login/bloc/login_screen_state.d
 
 class LoginScreenCubit extends BaseCubit<LoginScreenState> {
   final AppPreferences _appPreferences;
-  LoginScreenCubit(this._appPreferences) : super(const LoginScreenState()) {
+
+  LoginScreenCubit(this._appPreferences, {this.redirectAfterLogin = ""})
+    : super(const LoginScreenState()) {
     init();
   }
+
+  final String redirectAfterLogin;
 
   Future<void> init() async {
     try {

@@ -22,6 +22,9 @@ class SplashScreen extends StatelessWidget {
               listenWhen: (prev, curr) => !curr.isLoading,
               listener: (context, state) {
                 HomeRoute().go(context);
+                if (cubit.redirectAfterInit.isNotEmpty) {
+                  cubit.redirect(context);
+                }
               },
             ),
           ],

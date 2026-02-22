@@ -10,12 +10,20 @@ part '../../../_generated/presentation/screens/splash/splash_route.g.dart';
 
 @TypedGoRoute<SplashRoute>(path: AppRoutes.splash)
 class SplashRoute extends GoRouteData with $SplashRoute {
+  final String redirectAfterInit;
+
+  const SplashRoute({this.redirectAfterInit = ""});
+
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     return SlideUpPage(
       state: state,
       child: BlocProvider(
-        create: (context) => SplashScreenCubit(context.read()),
+        create: (context) => SplashScreenCubit(
+          context.read(),
+          context.read(),
+          redirectAfterInit: redirectAfterInit,
+        ),
         child: SplashScreen(),
       ),
     );

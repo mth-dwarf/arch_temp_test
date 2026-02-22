@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mt_template/presentation/screens/home/home_route.dart';
 import 'package:mt_template/presentation/screens/login/bloc/login_screen_cubit.dart';
 import 'package:mt_template/presentation/screens/login/bloc/login_screen_state.dart';
+import 'package:mt_template/presentation/screens/splash/splash_route.dart';
 import 'package:mt_template/presentation/utils/context_utils.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -29,7 +30,9 @@ class LoginScreen extends StatelessWidget {
                   TextButton(
                     onPressed: () async {
                       await cubit.onLoginPressed();
-                      if (context.mounted) HomeRoute().go(context);
+                      if (context.mounted) {
+                        SplashRoute(redirectAfterInit: cubit.redirectAfterLogin).go(context);
+                      }
                     },
                     child: Text(context.strings.generic_continue),
                   ),

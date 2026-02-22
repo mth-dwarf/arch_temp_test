@@ -17,13 +17,14 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mainCubit = MainCubit();
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider(create: (context) => appPreferences),
         RepositoryProvider(create: (context) => ExampleRepository(templateService)),
       ],
       child: MultiBlocProvider(
-        providers: [BlocProvider(create: (context) => MainCubit())],
+        providers: [BlocProvider(create: (context) => mainCubit)],
         child: MaterialApp.router(
           title: "Template app",
           supportedLocales: AppLocalizations.supportedLocales,

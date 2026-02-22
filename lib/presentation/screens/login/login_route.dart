@@ -10,11 +10,16 @@ part '../../../_generated/presentation/screens/login/login_route.g.dart';
 
 @TypedGoRoute<LoginRoute>(path: AppRoutes.login)
 class LoginRoute extends GoRouteData with $LoginRoute {
+  final String redirectAfterLogin;
+
+  const LoginRoute({this.redirectAfterLogin = ""});
+
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     return NoTransitionPage(
       child: BlocProvider(
-        create: (context) => LoginScreenCubit(context.read()),
+        create: (context) =>
+            LoginScreenCubit(context.read(), redirectAfterLogin: redirectAfterLogin),
         child: LoginScreen(),
       ),
     );

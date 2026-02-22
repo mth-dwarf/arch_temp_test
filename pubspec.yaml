@@ -37,7 +37,6 @@ dependencies:
   firebase_analytics: ^11.6.0
   app_settings: ^7.0.0
   app_tracking_transparency: ^2.0.6+1
-
   intl: any
   go_router: ^17.0.1
   retrofit: ^4.6.0
