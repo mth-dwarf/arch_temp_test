@@ -5,7 +5,9 @@ import 'package:mt_template/_generated/l10n/app_localizations.dart';
 import 'package:mt_template/data/local/app_preferences.dart';
 import 'package:mt_template/data/remote/services/template_service.dart';
 import 'package:mt_template/domain/repositories/example_repository.dart';
+import 'package:mt_template/domain/repositories/internet_status_repository.dart';
 import 'package:mt_template/presentation/app/bloc/main_cubit.dart';
+import 'package:mt_template/presentation/app/connection_state/connection_state_cubit.dart';
 import 'package:mt_template/presentation/navigation/app_router.dart';
 import 'package:mt_template/presentation/utils/context_utils.dart';
 
@@ -22,9 +24,13 @@ class App extends StatelessWidget {
       providers: [
         RepositoryProvider(create: (context) => appPreferences),
         RepositoryProvider(create: (context) => ExampleRepository(templateService)),
+        RepositoryProvider(create: (context) => InternetStatusRepository()),
       ],
       child: MultiBlocProvider(
-        providers: [BlocProvider(create: (context) => mainCubit)],
+        providers: [
+          BlocProvider(create: (context) => mainCubit),
+          BlocProvider(create: (context) => ConnectionStateCubit(context.read())),
+        ],
         child: MaterialApp.router(
           title: "Template app",
           supportedLocales: AppLocalizations.supportedLocales,

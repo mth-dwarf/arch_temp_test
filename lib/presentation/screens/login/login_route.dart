@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mt_template/presentation/navigation/app_routes.dart';
-import 'package:mt_template/presentation/navigation/pages/slide_up_page.dart';
 import 'package:mt_template/presentation/screens/login/bloc/login_screen_cubit.dart';
 import 'package:mt_template/presentation/screens/login/login_screen.dart';
 
