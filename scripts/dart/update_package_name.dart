@@ -3,7 +3,6 @@ import 'dart:io';
 const _templatePackageName = "mt_template";
 
 void main(List<String> args) async {
-  if (args.isEmpty) throw Exception("Missing arg");
   final dir = Directory(".");
   final pathSegments = dir.absolute.uri.pathSegments;
   final lastNonEmpty = pathSegments.lastWhere((seg) => seg.isNotEmpty);
