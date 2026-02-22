@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:change_case/change_case.dart';
+
 import 'update_bundle_id.dart';
 import 'update_package_name.dart';
 
@@ -14,8 +16,8 @@ void main(List<String> args) async {
         .trim(),
   );
   await Future.delayed(Duration(milliseconds: 500));
-  final appName = args[0].toString().isNotEmpty ? args[0] : await getAppName();
-  final bundleId = args[1].toString().isNotEmpty ? args[1] : await getBundleId();
+  final appName = await getAppName();
+  final bundleId = await getBundleId();
   final packageName = await getPackageName();
   print("Confirm registered data:");
   print("App name:\t\t$appName");
