@@ -4,9 +4,15 @@ const _templatePackageName = "mt_template";
 
 void main(List<String> args) async {
   if (args.isEmpty) throw Exception("Missing arg");
-  final packageName = args.first;
-  final libPath = Directory("./lib/");
-  await _findFiles(libPath, packageName);
+  final dir = Directory(".");
+  final pathSegments = dir.absolute.uri.pathSegments;
+  final lastNonEmpty = pathSegments.lastWhere((seg) => seg.isNotEmpty);
+  print("Rename package as \"$lastNonEmpty\"? [y/N]");
+  final input = stdin.readLineSync() ?? "";
+  if (input.toLowerCase() == "y") {
+    final libPath = Directory("./lib/");
+    await _findFiles(libPath, lastNonEmpty);
+  }
 }
 
 Future<void> _findFiles(Directory root, String packageName) async {
