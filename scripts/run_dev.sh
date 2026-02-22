@@ -1,0 +1,1 @@
+fvm flutter run --flavor develop $1$2

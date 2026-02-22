@@ -1,0 +1,77 @@
+name: mt_template
+description: "A new Flutter project."
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.0
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  bloc: ^9.0.0
+  flutter_bloc: ^9.1.1
+  gap: ^3.0.1
+  dio: ^5.8.0+1
+  fpdart: ^1.1.1
+  collection: ^1.19.1
+  pretty_dio_logger: any
+  connectivity_plus: ^6.1.4
+  package_info_plus: ^8.3.0
+  uuid: ^4.5.1
+  shared_preferences: ^2.5.3
+  flutter_dotenv: ^6.0.0
+  flutter_svg: ^2.2.0
+  path_provider: ^2.1.5
+  app_links: ^6.4.1
+  url_launcher: ^6.3.1
+  device_info_plus: ^12.1.0
+  flutter_svg_provider: ^1.0.7
+  cached_network_image: ^3.4.1
+  flutter_native_splash: ^2.4.7
+  webview_flutter: ^4.13.0
+  firebase_core: ^3.13.0
+  firebase_messaging: ^15.2.10
+  firebase_analytics: ^11.6.0
+  app_settings: ^7.0.0
+  app_tracking_transparency: ^2.0.6+1
+
+  intl: any
+  go_router: ^17.0.1
+  retrofit: ^4.6.0
+  flutter_flavor: ^3.1.4
+  json_annotation: ^4.9.0
+  freezed_annotation: ^3.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  json_serializable: ^6.9.5
+  freezed: ^3.0.6
+  build_runner: ^2.4.15
+  retrofit_generator: ^10.0.5
+  flutter_gen_runner: ^5.11.0
+  drift_dev: ^2.28.0
+  go_router_builder: ^4.1.0
+  build_verify: any
+  flutter_flavorizr: ^2.3.1
+  change_case: ^2.2.0
+  json_pretty: ^1.0.4
+  csv: ^6.0.0
+
+flutter:
+  generate: true
+  uses-material-design: true
+  assets:
+    - assets/
+    - dotenv/
+
+flutter_gen:
+  output: lib/_generated/assets/
+  integrations:
+    flutter_svg: true
+
+
