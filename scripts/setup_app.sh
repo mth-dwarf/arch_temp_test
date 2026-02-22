@@ -1,1 +1,1 @@
-dart scripts/init/setup_project.dart
+dart scripts/init/setup_project.dart $1 $2

@@ -3,26 +3,37 @@ import 'dart:io';
 import 'update_bundle_id.dart';
 import 'update_package_name.dart';
 
-void main() async {
+void main(List<String> args) async {
   print(
-    """ Welcome to your new project. This setup guide will cover project name, bundle id, and package name.""",
+    """
+    
+    Welcome to your new project. 
+    This setup guide will cover project name, bundle id, and package name.
+    
+    """
+        .trim(),
   );
   await Future.delayed(Duration(milliseconds: 500));
-  final appName = await getAppName();
-  final bundleId = await getBundleId();
+  final appName = args[0].toString().isNotEmpty ? args[0] : await getAppName();
+  final bundleId = args[1].toString().isNotEmpty ? args[1] : await getBundleId();
   final packageName = await getPackageName();
   print("Confirm registered data:");
   print("App name:\t\t$appName");
   print("Bundle identifier:\t$bundleId");
   print("Package name:\t\t$packageName");
   print("Confirm? [y/N]");
-  final confirm = stdin.readLineSync() ?? "";
-  if (confirm.toLowerCase() == "y") {
+  final confirmInput = stdin.readLineSync() ?? "";
+  if (confirmInput.toLowerCase() == "y") {
     await updatePackageName();
     await updateFlavorizr(appName, bundleId);
   }
-  // await Process.run("sh", ["scripts/gen.sh"]);
-  // await Process.run("fvm", ["dart", "pub", "run", "flutter_flavorizr"]);
+
+  print("Run generator and flavorizr now? [y/N]");
+  final confirmInit = stdin.readLineSync() ?? "";
+  if (confirmInit.toLowerCase() == "y") {
+    await Process.run("sh", ["scripts/gen.sh"]);
+    await Process.run("fvm", ["dart", "pub", "run", "flutter_flavorizr"]);
+  }
 }
 
 Future<String> getAppName() async {
